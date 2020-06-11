@@ -8,3 +8,5 @@ For single driver installation: you can launch and run it after moving driver in
 
 For multi-driver installation: recommended to set it to run on start-up scripts or task scheduler 
 so it will automatically install all drivers without needing to continuously launch script 
+
+Info and Errors can be found in driver_status.log when running
