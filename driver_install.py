@@ -1,14 +1,14 @@
 import json # json reading/writing
-import os #os directory and system calls
+import os # os directory and system calls
 import logging # error logging
 from subprocess import Popen # opening processes
-import psutil# pid checking
+import psutil # pid checking
 import sys # sys exit
 from time import sleep # sleep to check on status if proc is still running
 
 # check if proc is running
 def is_running ( pid ):
-	if psutil.pid_exists( pid ):
+	if ( psutil.pid_exists( pid ) ):
 		return True
 	else:
 		return False
@@ -100,14 +100,14 @@ def run( data , driver_names ):
 	logging_m( log_m , "INFO" )
 	os.system( "cd " + driver_dir )
 
-	# try to launch driver, if there is an uninstalled driver, if not all drivers are intstalled and script closes early
+	# try to launch driver if there is an uninstalled driver, if not all drivers are intstalled and script closes early
 	try:
 		pid = launch_n_detach( driver_to_install + " /s /i" )
 		log_m = driver + " : PID is " + str( pid )
 		logging_m( log_m , "INFO" )
 	except:
-		log_m = "All drivers installed, closing script"
-		logging_m( log_m , "INFO" )
+		log_m = "All drivers allegedly installed, closing script"
+		logging_m( log_m , "WARNING" )
 		sys.exit()
 
 	while ( is_running( pid ) ):
